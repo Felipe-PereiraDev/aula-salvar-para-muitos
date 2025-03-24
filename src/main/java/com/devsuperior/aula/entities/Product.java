@@ -1,5 +1,6 @@
 package com.devsuperior.aula.entities;
 
+import com.devsuperior.aula.dto.ProductRequest;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -24,10 +25,9 @@ public class Product {
     public Product() {
     }
 
-    public Product(Long id, String name, Double price) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
+    public Product(ProductRequest productRequest) {
+        this.name = productRequest.name();
+        this.price = productRequest.price();
     }
 
     public Long getId() {
@@ -56,5 +56,9 @@ public class Product {
 
     public Set<Category> getCategories() {
         return categories;
+    }
+
+    public void addCategory(Category category){
+        categories.add(category);
     }
 }
